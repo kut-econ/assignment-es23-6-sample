@@ -1,7 +1,7 @@
 ---
 title: "進化社会学課題6"
 author: "工科太郎"
-date: "2024/1/21"
+date: "2024/2/01"
 output: html_document
 ---
 
@@ -16,6 +16,10 @@ A) 標準ガンベル分布($a=0,b=1$)からサイズ10,000のサンプルを抽
 ```{r assignment-6-A}
 library(extraDistr)
 # ここにコードを書く
+set.seed(123)
+smpl <- rgumbel(10000,mu=0,sigma=1)
+hist(smpl,breaks=seq(-5,12,0.5),ylim=c(0,0.4),xlab='x',main='',probability=T)
+curve(dgumbel(x,mu=0,sigma=1),xlim=c(-5,12),ylim=c(0,0.4),xlab='',add=T)
 ```
 
 B) 以下の手順に従って、最大値安定性が成り立つことを数値実験により確かめてください。
@@ -26,6 +30,11 @@ B) 以下の手順に従って、最大値安定性が成り立つことを数�
 
 ```{r assignment-6-B}
 # ここにコードを書く
+smpl2 <- rgumbel(10^5,mu=0,sigma=1)
+m <- matrix(data=smpl2,nrow=10)
+smpl_max <- apply(m,2,max)
+hist(smpl_max,breaks=seq(-5,12,0.5),ylim=c(0,0.4),xlab='x',main='',probability=T)
+curve(dgumbel(x,mu=log(10),sigma=1),ylim=c(0,0.4),xlim=c(-5,12),xlab='',add=T)
 ```
 
 
